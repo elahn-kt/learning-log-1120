@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 #    path(r'users/', include(('users.urls', 'users'), namespace='users')),
@@ -29,5 +30,9 @@ urlpatterns = [
     path('users/', include('users.urls')), # new
     path('users/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='base.html'), name='base'),
-    
+
+      
 ]
+
+
+

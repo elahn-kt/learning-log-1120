@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import dj_database_url
 
 from pathlib import Path
+
 
 #from settings import PROJECT_ROOT
 
@@ -126,10 +128,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 
@@ -143,7 +146,7 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 if os.getcwd() == '/app':
-	import dj_database_url
+#	import dj_database_url
 	DATABASES = {
 		'default': dj_database_url.config(default='postgres://localhost')
 	}
@@ -155,8 +158,16 @@ if os.getcwd() == '/app':
 	ALLOWED_HOSTS = ['*']
 
 	# Static asset configuration
-	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-	STATIC_ROOT = 'staticfiles'
+#	BASE_DIR = os.path.dirname(os.path.abspath(__file__))   
+#	STATIC_ROOT = 'staticfiles'    
 	STATICFILES_DIRS = (
 		os.path.join(BASE_DIR, 'static'),
+    
+#    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#    STATIC_URL = '/static/'
+#    STATICFILES_DIRS = (
+#        os.path.join(BASE_DIR, 'static'),
+    
+
 	)
