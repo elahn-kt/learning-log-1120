@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import dj_database_url
 import django_heroku
+import psycopg2                     #
 
 from pathlib import Path
 
@@ -33,7 +34,7 @@ SECRET_KEY = '-=64+hlp269$#+r+j(to*2ol^xx5c8n5+09gx)#-tpoz=4cem2'
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -174,7 +175,7 @@ if os.getcwd() == '/app':
 	)
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 
 MIDDLEWARE_CLASSES = (
@@ -187,3 +188,13 @@ MIDDLEWARE_CLASSES = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#Configuration Django App for Heroku.
+#import django_heroku
+django_heroku.settings(locals())
+
+#TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
+
+#DATABASES_URL = os.environ['DATABASE_URL']
+#conn = psycopg2.connect(DATABASES_URL, sslmode='require')
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

@@ -18,6 +18,9 @@ from django.urls import path, include
 #from django.conf.urls import include
 from django.views.generic.base import TemplateView
 
+from django.views.generic import RedirectView       #
+from django.conf.urls import url                   #
+
 
 
 urlpatterns = [
@@ -30,6 +33,8 @@ urlpatterns = [
     path('users/', include('users.urls')), # new
     path('users/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='base.html'), name='base'),
+
+    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),      #
 
       
 ]
