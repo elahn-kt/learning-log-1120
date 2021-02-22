@@ -31,8 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '-=64+hlp269$#+r+j(to*2ol^xx5c8n5+09gx)#-tpoz=4cem2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -201,3 +201,17 @@ django_heroku.settings(locals())
 #DATABASES_URL = os.environ['DATABASE_URL']
 #conn = psycopg2.connect(DATABASES_URL, sslmode='require')
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+#To activate HSTS, go to your settings.py file
+SECURE_HSTS_SECONDS = 31536000 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+#But change them to false in your development and testing settings. Otherwise, you won’t be able to login or send a form with the development server.
+#Secure Cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+SECURE_SSL_REDIRECT = True
+
+
+
