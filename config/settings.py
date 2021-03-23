@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-import dj_database_url
+import dj_database_url              #
 import django_heroku
 import psycopg2                     #
 
@@ -165,7 +165,7 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 if os.getcwd() == '/app':
-#	import dj_database_url
+	import dj_database_url
 	DATABASES = {
 		'default': dj_database_url.config(default='postgres://localhost')
 	}
@@ -199,6 +199,7 @@ MIDDLEWARE_CLASSES = (
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     )
 
 # Simplified static file serving.
@@ -242,6 +243,8 @@ django_heroku.settings(locals())
 
 WHITENOISE_USE_FINDERS = True   #
 
+#SMTP (Simple Mail Transfert Protcole) Configuration
+
 CORS_REPLACE_HTTPS_REFERER      = False
 HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = None
@@ -251,6 +254,5 @@ CSRF_COOKIE_SECURE              = False
 SECURE_HSTS_SECONDS             = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 SECURE_FRAME_DENY               = False
-
 
 

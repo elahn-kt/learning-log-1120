@@ -6,7 +6,9 @@ dj-static==0.0.6
 Django==3.1.7
 django-bootstrap3==14.2.0
 django-heroku==0.3.1
+docopt==0.6.2
 foreman==0.9.7
+gitignore==0.0.8
 gunicorn==20.0.4
 idna==2.10
 package-json==0.0.0
