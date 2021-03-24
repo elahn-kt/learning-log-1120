@@ -39,13 +39,13 @@ ALLOWED_HOSTS = [
     '*',
     '0.0.0.0', 
     '.herokuapp.com',
-    'http://acient-plateau-19171.herokuapp.com',
-    'https://acient-plateau-19171.herokuapp.com',
+#    'http://acient-plateau-19171.herokuapp.com',
+#    'https://acient-plateau-19171.herokuapp.com',
 #    'www.djangoproject.dev',
 #    'docs.djangoproject.dev',
     '127.0.0.1',
     'localhost',
-#    '[::1]',    
+    '[::1]',    
     ]
 
 
@@ -165,7 +165,7 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 if os.getcwd() == '/app':
-	import dj_database_url
+#	import dj_database_url
 	DATABASES = {
 		'default': dj_database_url.config(default='postgres://localhost')
 	}
