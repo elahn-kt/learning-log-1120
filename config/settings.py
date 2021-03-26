@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-import dj_database_url              #
-import django_heroku
+#import dj_database_url              #
+#import django_heroku
 import psycopg2                     #
 
 from pathlib import Path
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',    #
+#    'whitenoise.runserver_nostatic',    #
 
     # Third party apps
     'bootstrap3',
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',   #
+#    'whitenoise.middleware.WhiteNoiseMiddleware',   #
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -154,7 +154,7 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 if os.getcwd() == '/app':
-#	import dj_database_url
+	import dj_database_url
 	DATABASES = {
 		'default': dj_database_url.config(default='postgres://localhost')
 	}
@@ -184,21 +184,21 @@ if os.getcwd() == '/app':
 #django_heroku.settings(locals())
 
 
-MIDDLEWARE_CLASSES = (
+#MIDDLEWARE_CLASSES = (
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+#    'whitenoise.middleware.WhiteNoiseMiddleware',
     
-    )
+#    )
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Configuration Django App for Heroku.
 #import django_heroku
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 #TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
 
@@ -230,18 +230,18 @@ django_heroku.settings(locals())
 #        response = self.client.get('/en/dev/search/', HTTP_HOST='docs.djangoproject.dev:8000')
 #        self.assertEqual(response.status_code, 200)
 
-WHITENOISE_USE_FINDERS = True   #
+#WHITENOISE_USE_FINDERS = True   #
 
 #SMTP (Simple Mail Transfert Protcole) Configuration
 
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False
-CSRF_COOKIE_SECURE              = False
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
+#CORS_REPLACE_HTTPS_REFERER      = False
+#HOST_SCHEME                     = "http://"
+#SECURE_PROXY_SSL_HEADER         = None
+#SECURE_SSL_REDIRECT             = False
+#SESSION_COOKIE_SECURE           = False
+#CSRF_COOKIE_SECURE              = False
+#SECURE_HSTS_SECONDS             = None
+#SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+#SECURE_FRAME_DENY               = False
 
 
