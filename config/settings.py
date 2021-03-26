@@ -35,18 +35,7 @@ SECRET_KEY = '-=64+hlp269$#+r+j(to*2ol^xx5c8n5+09gx)#-tpoz=4cem2'
 #DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    '*',
-    '0.0.0.0', 
-    '.herokuapp.com',
-#    'http://acient-plateau-19171.herokuapp.com',
-#    'https://acient-plateau-19171.herokuapp.com',
-#    'www.djangoproject.dev',
-#    'docs.djangoproject.dev',
-    '127.0.0.1',
-    'localhost',
-    '[::1]',    
-    ]
+ALLOWED_HOSTS = []
 
 
 # Application definition
