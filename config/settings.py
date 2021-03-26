@@ -16,10 +16,7 @@ import os
 import psycopg2                     #
 
 from pathlib import Path
-#from django.test import TestCase
 
-
-#from settings import PROJECT_ROOT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,16 +130,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATIC_TMP = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
-#os.makedirs(STATIC_TMP, exist_ok=True)
-#os.makedirs(STATIC_ROOT, exist_ok=True)
 
 # My settings
 LOGIN_URL = '/users/login/'
@@ -154,94 +143,28 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 if os.getcwd() == '/app':
-	import dj_database_url
-	DATABASES = {
-		'default': dj_database_url.config(default='postgres://localhost')
-	}
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
 
-	# Honor the 'X-Forwarded-Proto' header for request.is_secure().
-	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-	# Allow all host headers.
-	ALLOWED_HOSTS = ['*']
-
-	# Static asset configuration
-	BASE_DIR = os.path.dirname(os.path.abspath(__file__))   
-	STATIC_ROOT = 'staticfiles'    
-	STATICFILES_DIRS = (
-		os.path.join(BASE_DIR, 'static'),
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
-#    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#    STATIC_URL = '/static/'
-#    STATICFILES_DIRS = (
-#        os.path.join(BASE_DIR, 'static'),
-    
+    # Allow all host headers.
+    #ALLOWED_HOSTS = ['*']
 
-	)
+    # Allow only Heroku to host the project.
+    ALLOWED_HOSTS = ['learning-log-1120.herokuapp.com']
 
-# Activate Django-Heroku.
-#django_heroku.settings(locals())
+    DEBUG = False
 
+    # Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
-#MIDDLEWARE_CLASSES = (
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
-#    'whitenoise.middleware.WhiteNoiseMiddleware',
-    
-#    )
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-#Configuration Django App for Heroku.
-#import django_heroku
-#django_heroku.settings(locals())
-
-#TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
-
-#DATABASES_URL = os.environ['DATABASE_URL']
-#conn = psycopg2.connect(DATABASES_URL, sslmode='require')
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-#To activate HSTS, go to your settings.py file
-
-# HSTS settings
-#SECURE_HSTS_SECONDS = 31536000 # 1 year
-#SECURE_HSTS_PRELOAD = True
-#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-#But change them to false in your development and testing settings. Otherwise, you won’t be able to login or send a form with the development server.
-#Secure Cookies
-# HTTPS settings
-#SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SECURE = True
-#SECURE_SSL_REDIRECT = True
-
-#SECURE_BROWSER_XSS_FILTER = True
-
-#Strict_Transport_Security: max_age=63072000; includeSubDomains; preload
-#Strict_Transport_Security: max_age=31536000
-
-#class SearchFormTestCase(TestCase):
-#    def test_empty_get(self):
-#        response = self.client.get('/en/dev/search/', HTTP_HOST='docs.djangoproject.dev:8000')
-#        self.assertEqual(response.status_code, 200)
-
-#WHITENOISE_USE_FINDERS = True   #
-
-#SMTP (Simple Mail Transfert Protcole) Configuration
-
-#CORS_REPLACE_HTTPS_REFERER      = False
-#HOST_SCHEME                     = "http://"
-#SECURE_PROXY_SSL_HEADER         = None
-#SECURE_SSL_REDIRECT             = False
-#SESSION_COOKIE_SECURE           = False
-#CSRF_COOKIE_SECURE              = False
-#SECURE_HSTS_SECONDS             = None
-#SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-#SECURE_FRAME_DENY               = False
 
 
