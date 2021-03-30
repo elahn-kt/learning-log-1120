@@ -30,10 +30,11 @@ SECRET_KEY = '-=64+hlp269$#+r+j(to*2ol^xx5c8n5+09gx)#-tpoz=4cem2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#DEBUG = False
+#DEBUG = False          # for local run server
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -72,7 +73,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 #        'DIRS': [],
-        'DIRS': [os.path.join(BASE_DIR, 'learning_log/templates')],
+#        'DIRS': [os.path.join(BASE_DIR, 'learning_log/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'config/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
