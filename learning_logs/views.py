@@ -19,11 +19,15 @@ def index(request):
     """The home page for Learning Log"""
     return render(request, 'learning_logs/index.html')
 
-@login_required
+#@login_required
 def topics(request):
     """Show all topics."""
 #    topics = Topic.objects.order_by('date_added')
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+#    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    if request.user.is_authenticated:
+        topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    else:
+        topics = Topic.objects.filter(public=True).order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
 
@@ -31,7 +35,7 @@ def topics(request):
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
     topic = Topic.objects.get(id=topic_id)
-#    topic = get_object_or_404(Topic, id=topic_id)
+#    topic = get_object_or_404(Topic, id=topic_id)              #
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
         raise Http404
@@ -63,7 +67,8 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
-    topic = Topic.objects.get(id=topic_id)
+#    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)          #
 
     if request.method != 'POST':
         # No data submitted; create a blank form.
@@ -83,7 +88,8 @@ def new_entry(request, topic_id):
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry."""
-    entry = Entry.objects.get(id=entry_id)
+#    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)           #
     topic = entry.topic
     if topic.owner != request.user:
         raise Http404
