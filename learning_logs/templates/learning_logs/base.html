@@ -34,9 +34,7 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						{% if public == True %}
-							<li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>	
-						{% endif %}						
+												
 						{% if user.is_authenticated %}
 							
 							<li><a>Hello, {{ user.username }}.</a></li>
