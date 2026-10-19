@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-#import dj_database_url              #
+import dj_database_url              #
 #import django_heroku
 import psycopg2                     #
 
@@ -29,12 +29,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '-=64+hlp269$#+r+j(to*2ol^xx5c8n5+09gx)#-tpoz=4cem2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True			# for Heroku
 #DEBUG = False          # for local run server
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost',
-                 '127.0.0.1']
+# ALLOWED_HOSTS = ['localhost',
+                 # '127.0.0.1']
+
+#For Render
+#DEBUG = False
+#ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '.herokuapp.com',  # Keep this if you want to keep Heroku active
+    '.onrender.com'    # Add this line for Render
+]
 
 
 # Application definition
@@ -64,7 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#    'whitenoise.middleware.WhiteNoiseMiddleware',   #
+    'whitenoise.middleware.WhiteNoiseMiddleware',   			# For Render; Not for Heroku
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -93,11 +103,21 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# Fro Heroku
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# For Render
+
+# DATABASES = {
+    # 'default': dj_database_url.config(
+        # default=os.environ.get('DATABASE_URL'),
+        # conn_max_age=600
+    # )
 }
 
 
@@ -133,8 +153,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+########### For Render
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+###########
+
+# For Heroku
 
 STATIC_URL = '/static/'
+
 
 # My settings
 LOGIN_URL = '/users/login/'
