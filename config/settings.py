@@ -39,12 +39,14 @@ DEBUG = True			# for Heroku
 #For Render
 #DEBUG = False
 #ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
-ALLOWED_HOSTS = [
-    'localhost', 
-    '127.0.0.1', 
-    '.herokuapp.com',  # Keep this if you want to keep Heroku active
-    '.onrender.com'    # Add this line for Render
-]
+# ALLOWED_HOSTS = [
+    # 'localhost', 
+    # '127.0.0.1', 
+    # '.herokuapp.com',  # Keep this if you want to keep Heroku active
+    # '.onrender.com'    # Add this line for Render
+#]
+
+ALLOWED_HOSTS = ['*'] # Or your specific '.onrender.com' URL later
 
 
 # Application definition
@@ -104,12 +106,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # Fro Heroku
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+#}
 
 # For Render
 
@@ -118,7 +120,19 @@ DATABASES = {
         # default=os.environ.get('DATABASE_URL'),
         # conn_max_age=600
     # )
+#}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# Replace local DB with Render's PostgreSQL database if available
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 
 # Password validation
@@ -153,16 +167,21 @@ USE_L10N = True
 
 USE_TZ = True
 
-########### For Render
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# ########### For Render
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ###########
 
 # For Heroku
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+
+# Static files for Render
+
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # My settings
